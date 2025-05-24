@@ -1,6 +1,4 @@
-# VIGENERE-CIPHER
-## EX. NO: 4
- 
+# EX. NO: 4 : VIGENERE-CIPHER 
 
 ## IMPLEMETATION OF VIGENERE CIPHER
  
@@ -31,6 +29,88 @@ STEP-8: Repeat the above steps to generate the entire cipher text.
 
 ## PROGRAM
 
+```
+#include <stdio.h> 
+#include <stdlib.h>   
+#include <ctype.h>    
+#include <string.h>   
+void encipher(); 
+void decipher();
+int main()  
+{ 
+    int choice;
+    while (1)  
+    {
+        printf("\n1. Encrypt Text"); 
+        printf("\n2. Decrypt Text"); 
+        printf("\n3. Exit"); 
+        printf("\n\nEnter Your Choice: "); 
+        scanf("%d", &choice); 
+        if (choice == 3) 
+        exit(0); 
+        else if (choice == 1) 
+        encipher(); 
+        else if (choice == 2) 
+        decipher(); 
+        else 
+        printf("Please Enter a Valid Option.\n");   
+    }
+    return 0;    
+}
+
+void encipher()  
+{ 
+    unsigned int i, j; 
+    char input[50], key[10]; 
+    printf("\n\nEnter Plain Text: "); 
+    scanf("%s", input);   
+    printf("Enter Key Value: "); 
+    scanf("%s", key); 
+    printf("Resultant Cipher Text: "); 
+    for (i = 0, j = 0; i < strlen(input); i++, j++)
+    { 
+        if (j >= strlen(key))  
+        {
+            j = 0; 
+        }     
+        printf("%c", 65 + (((toupper(input[i]) - 65) + (toupper(key[j]) - 65)) % 26)); 
+    } 
+    printf("\n");   
+}
+
+void decipher()  
+{ 
+    unsigned int i, j; 
+    char input[50], key[10]; 
+    int value; 
+    printf("\n\nEnter Cipher Text: "); 
+    scanf("%s", input);   
+    printf("Enter the Key Value: "); 
+    scanf("%s", key); 
+    printf("Resultant Plain Text: "); 
+    for (i = 0, j = 0; i < strlen(input); i++, j++)
+    { 
+        if (j >= strlen(key))  
+        {
+            j = 0;
+        } 
+        value = (toupper(input[i]) - 65) - (toupper(key[j]) - 65); 
+        if (value < 0)  
+        {
+            value += 26;
+        }    
+        printf("%c", 65 + (value % 26)); 
+    } 
+    printf("\n"); 
+}
+```
+
+
 ## OUTPUT
 
+![image](https://github.com/user-attachments/assets/0fc38e9f-13d9-4a6e-ae6d-2e91a0fbbfbb)
+
+
 ## RESULT
+
+The program is executed successfully.
